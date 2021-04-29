@@ -12,7 +12,13 @@ public class CadastroClienteService {
 	@Autowired
 	private ClienteRepository clienteRepo;
 	
-	public Cliente salvar(Cliente cliente) {
+	public Cliente salvar(Cliente cliente) throws Exception {
+		Cliente clienteExistente = clienteRepo.findByEmail(cliente.getEmail());
+		
+		if(clienteExistente != null && !clienteExistente.equals(cliente)) {
+			throw new Exception("Já existe um cliente cadastrado com esse e-mail");
+		}
+		
 		return clienteRepo.save(cliente);
 	}
 	
