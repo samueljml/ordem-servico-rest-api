@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.samueljml.domain.model.Cliente;
+import com.github.samueljml.domain.model.service.CadastroClienteService;
 import com.github.samueljml.domain.repository.ClienteRepository;
 
 @RestController
@@ -27,6 +28,9 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository clienteRepo;
+	
+	@Autowired
+	private CadastroClienteService clienteService;
 
 	@GetMapping
 	public List<Cliente> listar() {
@@ -46,7 +50,7 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-		return clienteRepo.save(cliente);
+		return clienteService.salvar(cliente);
 	}
 
 	@PutMapping("/{clienteId}")
@@ -55,7 +59,8 @@ public class ClienteController {
 			return ResponseEntity.notFound().build();
 		}
 		cliente.setId(clienteId);
-		clienteRepo.save(cliente);
+		
+		clienteService.salvar(cliente);
 
 		return ResponseEntity.ok(cliente);
 	}
@@ -65,7 +70,7 @@ public class ClienteController {
 		if (!clienteRepo.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
-		clienteRepo.deleteById(clienteId);
+		clienteService.excluir(clienteId);
 
 		return ResponseEntity.noContent().build();
 	}
