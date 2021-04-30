@@ -1,7 +1,6 @@
 package com.github.samueljml.domain.model.service;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
+import java.time.OffsetDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,7 @@ public class OrdemServicoService {
 				.orElseThrow(() -> new NegocioException("Cliente não encontrado"));
 		
 		ordemServico.setCliente(cliente);
-		ordemServico.setDataAbertura(LocalDateTime.now());
+		ordemServico.setDataAbertura(OffsetDateTime.now());
 		ordemServico.setStatus(StatusOrdemServico.ABERTA);
 		return OrdemServicoRepo.save(ordemServico);
 	}

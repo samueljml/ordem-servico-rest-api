@@ -1,6 +1,6 @@
 package com.github.samueljml.api.exceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Problema {
 	private int status;
 	private String titulo;
-	private LocalDateTime dataHora;
+	private OffsetDateTime dataHora;
 	private List<Campo> campos;
 	
 	public static class Campo {
@@ -49,10 +49,10 @@ public class Problema {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public LocalDateTime getDataHora() {
+	public OffsetDateTime getDataHora() {
 		return dataHora;
 	}
-	public void setDataHora(LocalDateTime dataHora) {
+	public void setDataHora(OffsetDateTime dataHora) {
 		this.dataHora = dataHora;
 	}
 	public List<Campo> getCampos() {

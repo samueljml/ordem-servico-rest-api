@@ -1,6 +1,6 @@
 package com.github.samueljml.api.exceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 import org.springframework.http.HttpHeaders;
@@ -26,7 +26,7 @@ public class apiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		problema.setTitulo(ex.getMessage());
 		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
+		problema.setDataHora(OffsetDateTime.now());
 		
 		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
@@ -47,7 +47,7 @@ public class apiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		problema.setTitulo("Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente");
 		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
+		problema.setDataHora(OffsetDateTime.now());
 		problema.setCampos(campos);
 		
 		return super.handleExceptionInternal(ex, problema, headers, status, request);
