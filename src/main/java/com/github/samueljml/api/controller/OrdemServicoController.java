@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.samueljml.api.model.OrdemServicoInput;
 import com.github.samueljml.api.model.OrdemServicoModel;
 import com.github.samueljml.domain.model.OrdemServico;
 import com.github.samueljml.domain.model.service.OrdemServicoService;
@@ -38,7 +39,9 @@ public class OrdemServicoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public OrdemServico criar(@Valid @RequestBody OrdemServico ordemServico) {
+	public OrdemServico criar(@Valid @RequestBody OrdemServicoInput ordemServicoInput) {
+		OrdemServico ordemServico = toEntity(ordemServicoInput);
+		
 		return ordemServicoService.criar(ordemServico);
 	}
 	
@@ -67,5 +70,9 @@ public class OrdemServicoController {
 		return ordensServico.stream()
 			.map(ordemServico -> toModel(ordemServico))
 			.collect(Collectors.toList());
+	}
+	
+	private OrdemServico toEntity(OrdemServicoInput ordemServicoInput) {
+		return modelMapper.map(ordemServicoInput, OrdemServico.class);
 	}
 }
