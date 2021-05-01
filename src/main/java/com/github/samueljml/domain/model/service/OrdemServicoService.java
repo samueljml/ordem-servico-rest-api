@@ -19,7 +19,7 @@ import com.github.samueljml.domain.repository.OrdemServicoRepository;
 public class OrdemServicoService {
 	
 	@Autowired
-	private OrdemServicoRepository OrdemServicoRepo;
+	private OrdemServicoRepository ordemServicoRepo;
 	
 	@Autowired
 	private ClienteRepository clienteRepo;
@@ -34,12 +34,19 @@ public class OrdemServicoService {
 		ordemServico.setCliente(cliente);
 		ordemServico.setDataAbertura(OffsetDateTime.now());
 		ordemServico.setStatus(StatusOrdemServico.ABERTA);
-		return OrdemServicoRepo.save(ordemServico);
+		return ordemServicoRepo.save(ordemServico);
+	}
+	
+	public void finalizar(Long ordemServicoId) {
+		OrdemServico ordemServico = buscar(ordemServicoId);
+		
+		ordemServico.finalizar();
+		
+		ordemServicoRepo.save(ordemServico);
 	}
 	
 	public Comentario adicionarComentario(Long ordemServicoId, String descricao) {
-		OrdemServico ordemServico = OrdemServicoRepo.findById(ordemServicoId)
-				.orElseThrow(() -> new EntidadeNaoEncontradaException("Ordem de serviço não encontrada"));
+		OrdemServico ordemServico = buscar(ordemServicoId);
 		
 		Comentario comentario = new Comentario();
 		comentario.setDataEnvio(OffsetDateTime.now());
@@ -49,4 +56,8 @@ public class OrdemServicoService {
 		return comentarioRepo.save(comentario);
 	}
 	
+	private OrdemServico buscar(Long ordemServicoId) {
+		return ordemServicoRepo.findById(ordemServicoId)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Ordem de serviço não encontrada"));
+	}
 }
