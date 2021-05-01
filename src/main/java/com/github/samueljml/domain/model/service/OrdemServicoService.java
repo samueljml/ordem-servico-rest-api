@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.samueljml.domain.exception.EntidadeNaoEncontradaException;
 import com.github.samueljml.domain.exception.NegocioException;
 import com.github.samueljml.domain.model.Cliente;
 import com.github.samueljml.domain.model.Comentario;
@@ -38,7 +39,7 @@ public class OrdemServicoService {
 	
 	public Comentario adicionarComentario(Long ordemServicoId, String descricao) {
 		OrdemServico ordemServico = OrdemServicoRepo.findById(ordemServicoId)
-				.orElseThrow(() -> new NegocioException("Ordem de serviço não encontrada"));
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Ordem de serviço não encontrada"));
 		
 		Comentario comentario = new Comentario();
 		comentario.setDataEnvio(OffsetDateTime.now());
