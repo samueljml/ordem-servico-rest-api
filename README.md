@@ -1,7 +1,7 @@
 # Ordem de Serviço API
 
 ## :page_facing_up: Descrição
-Projeto foi desenvolvido seguindo o Curso Spring REST da [AlgaWorks](https://www.algaworks.com). Nesse curso foi aprensentado varios conceitos importantes de arquitetura de uma API REST e Spring, além de mostrar boas práticas, dicas de desenvolvimento e a ultilização adequada dos métodos HTTP e códigos de status.
+O projeto foi desenvolvido seguindo o curso de Spring REST da [AlgaWorks](https://www.algaworks.com). Nesse curso, foi apresentado vários conceitos importantes de arquitetura de uma API REST e Spring, além de mostrar boas práticas, dicas de desenvolvimento e a utilização adequada dos métodos HTTP e códigos de status.
 
 ## :wrench: Ferramentas
 - Java 11
@@ -55,13 +55,14 @@ Método  | URI                           | Body
 GET     | /ordens-servico/1/comentarios | 
 POST    | /clientes                     | descricao
 
-## :books: O que aprendi de novo:
+## :books: O que aprendi
 - [Migracao de dados com Flyway](https://github.com/samueljml/ordem-servico-rest-api/commit/d75aa1bab15cccd891f93c4fe4d5c9846982fe2a)
 - [Restringir o acesso de um atributo](https://github.com/samueljml/ordem-servico-rest-api/commit/e3a97eff80e566286e6c777beb1bdf4979a35aed)
 - [Tratamento de exceções com ExceptionHandler](https://github.com/samueljml/ordem-servico-rest-api/commit/7e8b91e702f871cd831b256fa8a69bceb1fdca17)
+- [Não incluir campos nulos no body da resposta da requisição](https://github.com/samueljml/ordem-servico-rest-api/commit/01e989af727ac836e58347cec9da4142f44c6ffe)
 - [Expor uma instância de uma biblioteca terceira para o Spring](https://github.com/samueljml/ordem-servico-rest-api/commit/f84a4b51b4323a8c9c55b1d70527d1d5db5cfce1)
 - [Utilizar o ModelMapper para mapear uma entidade para DTO](https://github.com/samueljml/ordem-servico-rest-api/commit/63e67bf6579d52def99dea6c6a1180f7a76708bd)
-- [Não incluir campos nulos no body da resposta utilizando](https://github.com/samueljml/ordem-servico-rest-api/commit/01e989af727ac836e58347cec9da4142f44c6ffe) ```@JsonInclude(Include.NON_NULL)```
+
 
 
 ## :outbox_tray: Como executar o projeto
